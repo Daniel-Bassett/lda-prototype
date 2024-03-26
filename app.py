@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 import pandas as pd
 import numpy as np
 import glob
@@ -12,7 +13,8 @@ filter_columns = st.columns([4, 4])
 
 # Filter Columns
 with filter_columns[0]:
-    agencies = glob.glob('data/*/')
+    folder_path = 'data/'
+    agencies = glob.glob(os.path.join(folder_path, '*/'))
     agencies = [agency.split('\\')[1] for agency in agencies]
     agencies = sorted(agencies)
     agency = st.selectbox('Choose Agency', options=agencies)
